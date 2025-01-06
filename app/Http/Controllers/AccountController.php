@@ -11,7 +11,7 @@ class AccountController extends Controller
     public function index(){
         $users = User::paginate(10);
 
-        return view('');
+        return view('pages.accounts.list', compact('users'));
     }
 
     /** page account profile */
