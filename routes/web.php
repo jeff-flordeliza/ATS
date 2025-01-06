@@ -18,6 +18,9 @@ function set_show($route) {
 }
 
 Route::get('/', function () {
+    if(auth()->check())
+        return redirect('home');
+
     return view('auth.login');
 });
 
