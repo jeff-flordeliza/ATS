@@ -6,10 +6,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'name',
         'email',
         'join_date',
@@ -27,7 +28,7 @@ class User extends Authenticatable
         'phone_number',
         'location',
         'status',
-        'role_name',
+        // 'role_name',
         'email',
         'role_name',
         'avatar',
@@ -61,21 +62,21 @@ class User extends Authenticatable
     }
 
     /** auto generate id */
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        self::creating(function ($model) {
-            // Retrieve the last user record ordered by user_id
-            $lastUser = self::orderBy('user_id', 'desc')->first();
+    //     self::creating(function ($model) {
+    //         // Retrieve the last user record ordered by user_id
+    //         $lastUser = self::orderBy('user_id', 'desc')->first();
 
-            // Determine the next ID number
-            $nextID = $lastUser ? intval(substr($lastUser->user_id, 3)) + 1 : 1;
+    //         // Determine the next ID number
+    //         $nextID = $lastUser ? intval(substr($lastUser->user_id, 3)) + 1 : 1;
 
-            do {
-                // Generate the new user_id
-                $model->user_id = 'KH-' . sprintf("%04s", $nextID++);
-            } while (self::where('user_id', $model->user_id)->exists());
-        });
-    }
+    //         do {
+    //             // Generate the new user_id
+    //             $model->user_id = 'KH-' . sprintf("%04s", $nextID++);
+    //         } while (self::where('user_id', $model->user_id)->exists());
+    //     });
+    // }
 }

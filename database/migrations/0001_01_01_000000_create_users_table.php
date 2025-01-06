@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('user_id');
+            // $table->string('user_id');
             $table->string('email')->unique();
             $table->string('join_date')->nullable();
             $table->string('experience')->nullable();
             $table->string('last_login')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('location')->nullable();
-            $table->string('status')->nullable();
-            $table->string('role_name')->nullable();
+            // $table->string('status')->nullable();
+            $table->unsignedTinyInteger('status')->default(2);
+            // $table->string('role_name')->nullable();
             $table->string('avatar')->nullable();
             $table->string('position')->nullable();
             $table->string('designation')->nullable();
